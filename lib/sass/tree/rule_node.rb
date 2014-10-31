@@ -77,6 +77,14 @@ module Sass::Tree
       super()
     end
 
+    def self.resolved(selector, selector_source_range)
+      rule = new(selector)
+      rule.resolved_rules = selector
+      rule.selector_source_range = selector_source_range
+      rule.line = selector_source_range.start_pos.line
+      rule
+    end
+
     # If we've precached the parsed selector, set the line on it, too.
     def line=(line)
       @parsed_rules.line = line if @parsed_rules

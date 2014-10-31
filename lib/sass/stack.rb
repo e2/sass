@@ -107,6 +107,17 @@ module Sass
       end.join("\n")
     end
 
+    def to_sass_backtrace
+      frames.map do |frame|
+        map = {
+          :filename => frame.filename,
+          :line => frame.line
+        }
+        map[:mixin] = frame.name if frame.type == :mixin
+        map
+      end.reverse
+    end
+
     private
 
     def with_frame(filename, line, type, name = nil)

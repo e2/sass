@@ -426,11 +426,9 @@ SASS
 SASS
     assert(false, "Exception not raised")
   rescue Sass::SyntaxError => err
-    assert_hash_has(err.sass_backtrace.first, :line => 5,
-      :filename => filename_for_test, :mixin => "one-arg-mixin")
-    assert_hash_has(err.sass_backtrace[1], :line => 5,
+    assert_hash_has(err.sass_backtrace[0], :line => 5,
       :filename => filename_for_test, :mixin => "outer-mixin")
-    assert_hash_has(err.sass_backtrace[2], :line => 8,
+    assert_hash_has(err.sass_backtrace[1], :line => 8,
       :filename => filename_for_test, :mixin => nil)
   end
 
